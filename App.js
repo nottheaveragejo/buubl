@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView,  Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView,  Image,  Slider} from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 import { NativeRouter, Route, Link } from "react-router-native";
 import MapContainer from './MapContainer'
 import Home from './Home'
-import Test from './Test'
+import Slide from './Slider'
 import { colors } from 'react-native-elements';
 
 
@@ -24,7 +24,19 @@ export default class App extends Component {
        <Link to="/home" underlayColor="#f0f4f7" style={styles.navItem}>
            <Text>homer</Text>
         </Link>
-        <Test></Test>
+        <Link to="/" underlayColor="#f0f4f7" style={styles.navItem}>
+         <Text>Container</Text>
+                  </Link>
+       <Link to="/home" underlayColor="#f0f4f7" style={styles.navItem}>
+           <Text>homer</Text>
+        </Link>
+        <Link to="/" underlayColor="#f0f4f7" style={styles.navItem}>
+         <Text>Container</Text>
+                  </Link>
+       <Link to="/home" underlayColor="#f0f4f7" style={styles.navItem}>
+           <Text>homer</Text>
+        </Link>
+        <Slide></Slide>
         <Route exact path="/" component={MapContainer} />
    <Route exact path="/home" component={Home} />
         </ScrollView>
