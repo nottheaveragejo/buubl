@@ -1,42 +1,49 @@
-import React from 'react';
-import { StyleSheet, Text, View TextInput } from 'react-native';
-import MapView, { Marker} from 'react-native-maps';
-import {Home} from './components/Home'
+import React, {Component} from 'react';
+import { StyleSheet, Text, View, TextInput, ScrollView,  Image} from 'react-native';
+import { Router, Scene } from 'react-native-router-flux';
+import { NativeRouter, Route, Link } from "react-router-native";
+import MapContainer from './MapContainer'
+import Home from './Home'
+import Test from './Test'
+import { colors } from 'react-native-elements';
 
 
 
-export default class PizzaTranslator extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {text: ''};
   }
   render() {
   return (
-    <View style={styles.container}>
-    <Home/>
-    <TextInput
-          style={{height: 40}}
-          placeholder="Type here to translate!"
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
-        />
-      <MapView style={styles.map}
-    initialRegion={{
-      latitude:  40.728,
-      longitude: -73.986,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-  >
-  <Marker
-  coordinate={{
-    latitude:  40.728,
-    longitude: -73.986}}
-    title={"home"}
-    description={'testing123'}/>
-  </MapView>
-     <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <NativeRouter>
+       <ScrollView>
+       <Link to="/" underlayColor="#f0f4f7" style={styles.navItem}>
+         <Text>Container</Text>
+                  </Link>
+       <Link to="/home" underlayColor="#f0f4f7" style={styles.navItem}>
+           <Text>homer</Text>
+        </Link>
+        <Test></Test>
+        <Route exact path="/" component={MapContainer} />
+   <Route exact path="/home" component={Home} />
+        </ScrollView>
+    </NativeRouter>
+  //   <NativeRouter>
+  //       <View style={styles.container}>
+  //       <ScrollView>
+  //       </ScrollView>
+  //       <Link to="/" underlayColor="#f0f4f7" style={styles.navItem}>
+  //         <Text>Container</Text>
+  //         </Link>
+  //       <Link to="/home" underlayColor="#f0f4f7" style={styles.navItem}>
+  //         <Text>homer</Text>
+  //       </Link>
+  //  </View>
+
+  //   <Route exact path="/" component={MapContainer} />
+  //     <Route exact path="/home" component={Home} />
+  //   </NativeRouter>
   );
 }
 }
@@ -44,13 +51,12 @@ export default class PizzaTranslator extends Component {
 
 const styles = StyleSheet.create({
  container: {
+  flexDirection: 'column',
    position: 'absolute',
    top: 0,
    bottom: 0,
    left: 0,
    right: 0,
-   justifyContent: 'flex-end',
-   alignItems: "center"
  },
  map: {
    position: 'absolute',
